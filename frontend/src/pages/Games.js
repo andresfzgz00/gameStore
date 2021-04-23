@@ -48,15 +48,6 @@ const Games = props => {
         }
     }
 
-    const editGameHandler = id => {
-        props.history.push('/addGame', { gameId: id })
-    }
-
-    const addToCart = game => {
-        props.addToCart(game._id)
-        props.showAlert(game.title + ' added to cart successfully', 'success')
-    }
-
     let platformDecks = <h1>No games found</h1>
     if (platforms.length > 0) {
         platformDecks = platforms.map(platform => {
@@ -66,7 +57,7 @@ const Games = props => {
                     platformGames.push(game)
                 }
             })
-            return < PlatformDeck games={platformGames} platform={platform} deleteGameHandler={deleteGameHandler} editGameHandler={editGameHandler} addToCartHandler={addToCart} loggedIn={props.loggedIn} pathname={props.location.pathname} />
+            return < PlatformDeck games={platformGames} platform={platform} deleteGameHandler={deleteGameHandler} pathname={props.location.pathname} />
         })
     }
 
@@ -77,18 +68,10 @@ const Games = props => {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        token: state.token,
-        loggedIn: state.loggedIn
-    }
-}
-
 const mapDispatchToProps = dispatch => {
     return {
-        addToCart: (id) => dispatch({ type: actionTypes.ADDTOCART, payload: { newCartItemId: id } }),
         showAlert: (text, variant) => dispatch({ type: actionTypes.SHOWALERT, payload: { text: text, variant: variant } })
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Games)
+export default connect(null, mapDispatchToProps)(Games)

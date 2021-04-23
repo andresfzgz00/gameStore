@@ -6,7 +6,7 @@ import GameCard from './GameCard'
 const platformDeck = (props) => {
     const platformDeck = props.games.map(game => {
         return (
-            <GameCard game={game} deleteGameHandler={props.deleteGameHandler} editGameHandler={props.editGameHandler} addToCartHandler={props.addToCartHandler} colWidth="2" loggedIn={props.loggedIn} pathname={props.pathname} />
+            <GameCard game={game} deleteGameHandler={props.deleteGameHandler} colWidth="2" pathname={props.pathname} />
         )
     })
     return (

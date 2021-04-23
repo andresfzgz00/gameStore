@@ -9,11 +9,6 @@ import Alert from './components/Alert'
 import Home from './pages/Home'
 import Games from './pages/Games'
 import NavBar from './components/Navbar'
-import NewGame from './pages/NewGame'
-import Login from './pages/Login'
-import Signup from './pages/Signup'
-import Orders from './pages/Orders'
-import Cart from './pages/Cart'
 
 const App = props => {
   let alert = null
@@ -29,11 +24,6 @@ const App = props => {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/games" exact component={Games} />
-        <Route path="/addGame" exact component={NewGame} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/signup" exact component={Signup} />
-        <Route path="/cart" exact component={Cart} />
-        <Route path="/orders" exact component={Orders} />
       </Switch>
     </React.Fragment>
   )

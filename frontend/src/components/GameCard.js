@@ -4,28 +4,8 @@ import { Card, Button, Row, Col } from 'react-bootstrap'
 const gameCard = (props) => {
     let buttons = null
     let imageUrl = props.game.imageUrl
-    if (props.loggedIn && props.pathname !== '/') {
-        buttons = (
-            <React.Fragment>
-                <Row>
-                    <Col className="pr-0">
-                        <Button block variant="danger" size="sm" onClick={() => props.deleteGameHandler(props.game)}>Delete</Button>
 
-                    </Col>
-                    <Col className="pl-0">
-                        <Button block variant="primary" size="sm" onClick={() => props.editGameHandler(props.game._id)}>Edit</Button>
-                    </Col>
-
-                </Row>
-                <Row className="p-0">
-
-                    <Col>
-                        <Button block variant="success" size="sm" onClick={() => props.addToCartHandler(props.game)}>Add to Cart</Button>
-                    </Col>
-                </Row>
-            </React.Fragment>
-        )
-    } if (props.pathname !== '/') {
+    if (props.pathname !== '/') {
         imageUrl = props.game.coverUrl
     }
 
