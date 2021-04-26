@@ -3,12 +3,13 @@ import { Card, Button, Row, Col } from 'react-bootstrap'
 
 const gameCard = (props) => {
     let buttons = null
-    let imageUrl = props.game.imageUrl
+    let imageUrl = props.game.image
 
+    console.log(props.pathname)
     if (props.pathname !== '/') {
-        imageUrl = props.game.coverUrl
+        imageUrl = props.game.cover
     }
-
+    console.log(imageUrl)
     return (
         <Col lg={props.colWidth} className="mt-3">
             <Card bg="light" key={props.game._id} className="h-100 m-0">

@@ -14,15 +14,15 @@ const Games = props => {
 
     const setPlatformsAndGames = async () => {
         const response = await axios.get('/')
-        if (response.data.games.length > 0) {
+        if (response.data.length > 0) {
             const toBeSetPlatforms = []
-            response.data.games.forEach(game => {
-                if (!toBeSetPlatforms.includes(game.platform.name)) {
-                    toBeSetPlatforms.push(game.platform.name)
+            response.data.forEach(game => {
+                if (!toBeSetPlatforms.includes(game.platform)) {
+                    toBeSetPlatforms.push(game.platform)
                 }
             })
             setPlatforms(toBeSetPlatforms)
-            setGames(response.data.games)
+            setGames(response.data)
         }
         else {
             setPlatforms([])
@@ -34,30 +34,16 @@ const Games = props => {
         await setPlatformsAndGames()
     }, [])
 
-    const deleteGameHandler = async game => {
-        try {
-            const response = await axios.post('/delete-game', { gameId: game._id }, {
-                headers: {
-                    Authorization: 'Bearer ' + props.token
-                }
-            })
-            await setPlatformsAndGames()
-            props.showAlert(response.data, 'success')
-        } catch (err) {
-            props.showAlert(err.response.data, 'danger')
-        }
-    }
-
     let platformDecks = <h1>No games found</h1>
     if (platforms.length > 0) {
         platformDecks = platforms.map(platform => {
             const platformGames = []
             games.forEach(game => {
-                if (game.platform.name === platform) {
+                if (game.platform === platform) {
                     platformGames.push(game)
                 }
             })
-            return < PlatformDeck games={platformGames} platform={platform} deleteGameHandler={deleteGameHandler} pathname={props.location.pathname} />
+            return < PlatformDeck games={platformGames} platform={platform} pathname={props.location.pathname} />
         })
     }
 
@@ -68,10 +54,4 @@ const Games = props => {
     )
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        showAlert: (text, variant) => dispatch({ type: actionTypes.SHOWALERT, payload: { text: text, variant: variant } })
-    }
-}
-
-export default connect(null, mapDispatchToProps)(Games)
+export default Games

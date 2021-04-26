@@ -10,8 +10,8 @@ const Home = props => {
 
     useEffect(async () => {
         const response = await axios.get('date')
-        setCarousel(response.data.carousel)
-        setNewReleases(response.data.newReleases)
+        setCarousel(response.data.slice(0, 3))
+        setNewReleases(response.data.slice(3, 6))
     }, [])
 
     let newGameCards = null
