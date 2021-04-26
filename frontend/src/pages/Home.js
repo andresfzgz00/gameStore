@@ -9,7 +9,7 @@ const Home = props => {
     const [newReleases, setNewReleases] = useState([])
 
     useEffect(async () => {
-        const response = await axios.get('/home')
+        const response = await axios.get('date')
         setCarousel(response.data.carousel)
         setNewReleases(response.data.newReleases)
     }, [])

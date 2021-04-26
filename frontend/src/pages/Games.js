@@ -13,7 +13,7 @@ const Games = props => {
 
 
     const setPlatformsAndGames = async () => {
-        const response = await axios.get('/games')
+        const response = await axios.get('/')
         if (response.data.games.length > 0) {
             const toBeSetPlatforms = []
             response.data.games.forEach(game => {
